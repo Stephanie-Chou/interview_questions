@@ -1,28 +1,3 @@
-function Queue(){
-	this.inStack = [];
-	this.outStack = [];
-}
-
-Queue.prototype.push = function(value) {
-	this.inStack.push(value);
-};
-
-Queue.prototype.pop = function(){
-	while (this.inStack.length !== 0){
-		var val = this.inStack.pop();
-		this.outStack.push(val);
-	}
-
-	return this.outStack.pop();
-}
-
-Queue.prototype.empty = function() {
-	if (this.inStack.length === 0 && this.outStack.length === 0){
-		return true;
-	}else{
-		return false;
-	}
-};
 
 
 function Node(value){
@@ -60,7 +35,7 @@ Tree.prototype.add = function(node, value){
 
 
 Tree.prototype.find = function(node, value) {
-	
+
 	var found = false;
 
 	while (node && !found){
@@ -83,7 +58,7 @@ function BFS(root){
 	nodes.push(root.value);
 	while (!q.empty()){
 		var node = q.pop();
-		
+
 		console.log(node.value);
 
 		if (node.left !== null){
@@ -93,7 +68,7 @@ function BFS(root){
 		if (node.right !== null){
 			q.push(node.right);
 			nodes.push(node.right.value);
-		}	
+		}
 	}
 	return nodes;
 }
@@ -106,7 +81,7 @@ tree.insert(7);
 
 // 		5
 // 	3		7
-// 2	4	
+// 2	4
 
 // console.log(tree);
 
@@ -163,7 +138,7 @@ function inOrder(node){
 	if (!node){
 		return
 	}
-	
+
 	if (node.left !== null){
 		inOrder(node.left);
 	}
@@ -201,7 +176,7 @@ console.log("**********************")
 // if val1 and val2 are in the left and right children of current node, then the current node is the LCA
 
 function LCA(node, val1, val2){
-	var right = exists(node.right, val1, val2); 
+	var right = exists(node.right, val1, val2);
 	var left = exists(node.left, val1, val2);
 	if (right && left){
 		return node.value;
@@ -217,7 +192,7 @@ function LCA(node, val1, val2){
 function exists(node, val1, val2){
 
 	if (!node){
-		return false;	
+		return false;
 	}
 	else if (node.value === val1 || node.value ===val2 ){
 		return true;

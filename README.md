@@ -1,7 +1,7 @@
 interview_questions
 ===================
 
-All the technical coding interview questions I could get my hands on, and attempted to solve. I also post these solutions on www.stephaniechou.com/blog
+All the technical coding interview questions I could get my hands on, and attempted to solve. I also post these solutions with some explanations on www.stephaniechou.com/blog
 
 ## Topics Covered
 - Data Structures
