@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+
+<body>
+	<input id = "input1" type = 'text' onchange = 'storeValue(this)'/>
+	<input id = "input2" type = 'text' onchange = 'storeValue(this)'/>
+	<input id = 'undo' type = 'submit' value = 'undo' onclick = 'undo()'> 
+
+
+<script type="text/javascript">
+	// keep track of what strings are input where
+	var states = {
+		'last' : [],
+		'input1' : [],
+		'input2' : []
+	}
+	// document.activeElement
+
+	function storeValue(el){
+		states[el.getAttribute('id')].push(el.value);
+		states['last'].push(el.getAttribute('id'));
+		console.log(states);
+	}
+
+	function undo(){
+		var last_input = states['last'].pop();
+		states[last_input].pop();
+		var prev_state =  states[last_input].length !== 0 ? states[last_input].pop() : '';
+
+		document.getElementById(last_input).value = prev_state;
+	}
+</script>
+</body>
+
+</html>

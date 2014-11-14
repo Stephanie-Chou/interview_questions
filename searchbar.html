@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	</head>
+	<body>
+		<input type = 'search' id = "mySearch" onkeyup="getKeyUp(event)" placeholder = "FIND IT" class = 'search'/>
+		<p> You Searched for: <span id = "input"> </span> </p>
+
+		<div id = "results" class = 'box'>
+
+		</div>
+		<script type="text/javascript">
+			(function(){
+				document.getElementById('search').focus();
+			});
+
+			function getWords(str){
+				words: ['corn', 'cat', 'cobra', 'chart', 'cloud']
+				// find words with the shortest edit distance
+			}
+
+			function displayResults(data){
+				var results = document.getElementById('results');
+
+				while (results.hasChildNodes()) {
+				   results.removeChild(results.firstChild);
+				}
+				var listEl;
+				var listElText;
+				data.words.forEach(function(word){
+					listEl = document.createElement('Li')
+					listElText = document.createTextNode(word);
+					listEl.appendChild(listElText);
+					listEl.setAttribute('class','list-element');
+					listEl.setAttribute('id',word);
+					results.appendChild(listEl);
+				});
+
+				var classEls = getElementByClassName('box');
+				console.log(classEls);
+			}
+
+			function getKeyUp(event){
+				var code = 'charCode' in event ? event.keyCode : event.charCode
+				var input = document.getElementById("input");
+				input.innerText = document.getElementById('mySearch').value;
+				// String.fromCharCode(code)
+				/* DO AJAX request to server on each valid keypress*/
+				var data = getWords();
+
+				displayResults(data);
+
+
+
+
+				// var request = new XMLHttpRequest();
+				// request.onreadystatechange = function(){
+				// 	if (request.readystate === 4)
+				// }
+			}
+
+			function getElementByClassName(className){
+				var body = document.body;
+
+				return inOrder(body, [], className);
+
+			}
+
+			function inOrder(node, el, className){
+				if (!node){
+					return el;
+				}
+				var children = node.children;
+				// console.log(children);
+				for ( var i = 0; i < children.length ; i++){
+
+					if (children[i].getAttribute('class') === className){
+
+						el.push(children[i]);
+					}
+					inOrder(children[i], el, className);
+				}
+				return el;
+			}
+
+		</script>
+	</body>
+</html>
